@@ -1,0 +1,63 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Form Edit Contact</h2>
+
+      <% if (typeof errors !='undefined') { %>
+      <div class="alert alert-danger" role="alert">
+        <ul>
+          <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      </div>
+      <% } %>
+
+      <form method="post" action="/contact?_method=PUT">
+        <!--! ketika form error,(kalo disave lagi) oldNama bakal "berubah" sesuai value error tsb karena tetap di page form,  -->
+        <!--! oN=erik(yg baru), jadi oN=erik nama=erik. karna akhirnya namanya sama, maka lolos validasi   -->
+        <!--* kalo ada, isi oldNama tidak berubah || kalo tidak, isinya nama di JSON -->
+        <input type="hidden" name="_id" value="<%= contact._id %>" />
+        <input
+          type="hidden"
+          name="oldName"
+          value="<%= contact.oldName || contact.nama %>"
+        />
+        <div class="mb-3">
+          <label for="nama" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nama"
+            name="nama"
+            value="<%= contact.nama %>"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            value="<%= contact.email %>"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="nohp" class="form-label">Phone Number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nohp"
+            name="nohp"
+            value="<%= contact.nohp %>"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Save Editing</button>
+      </form>
+    </div>
+  </div>
+</div>

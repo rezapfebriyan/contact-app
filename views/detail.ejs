@@ -1,0 +1,46 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Detail Contact</h2>
+      <% if (!contact) { %>
+      <div class="alert alert-danger" role="alert">
+        <b>Contact not found.</b> <br />
+        <a href="/contact" class="alert-link">&laquo; Back to page contact.</a>
+      </div>
+      <% } else { %>
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title"><%= contact.nama %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= contact.nohp %></h6>
+          <p class="card-text"><%= contact.email %></p>
+          <a
+            href="/contact/edit/<%= contact.nama %>"
+            class="btn btn-warning badge"
+            >Edit</a
+          >
+          <!--!  pas button delete diklik, akan ngirim req-meth DELETE yg url nya contact (di app,js)  -->
+          <form action="/contact?_method=DELETE" method="post" class="d-inline">
+            <input type="hidden" name="nama" value="<%= contact.nama %>" />
+            <button
+              type="submit"
+              class="btn btn-danger badge"
+              onclick="return confirm('Yakin ingin dihapus?')"
+            >
+              Delete
+            </button>
+          </form>
+          <!-- <a
+            href="/contact/delete/<%= contact.nama %>"
+            class="btn btn-danger badge"
+            onclick="return confirm('Yakin ingin dihapus?')"
+            >Delete</a
+          > -->
+          <a href="/contact" class="card-link d-block mt-3"
+            >&laquo; Back to <b>contact page</b></a
+          >
+        </div>
+      </div>
+      <%} %>
+    </div>
+  </div>
+</div>
