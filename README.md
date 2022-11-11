@@ -1,2 +1,2 @@
 # contact-app
-Contact App from channel WPU
+Contact App using Express JS and MongoDB from channel WPU
